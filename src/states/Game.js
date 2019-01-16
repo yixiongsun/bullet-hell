@@ -19,16 +19,46 @@ export default class extends Phaser.State {
     banner.padding.set(10, 16)
     banner.anchor.setTo(0.5)
 
+
+
+    var emitter = game.add.emitter(this.game.world.centerX, 0, 400);
+
+    emitter.width = this.game.world.width;
+    // emitter.angle = 30; // uncomment to set an angle for the rain.
+
+    emitter.makeParticles('rain');
+
+    emitter.minParticleScale = 0.1;
+    emitter.maxParticleScale = 0.5;
+
+    emitter.setYSpeed(10, 10);
+    emitter.setXSpeed(-5, 5);
+
+    emitter.minRotation = 0;
+    emitter.maxRotation = 0;
+
+    emitter.start(false, 1600, 5, 0);
+
+
+
+
+
+
+
     this.mushroom = new Mushroom({
       game: this.game,
       x: this.world.centerX,
       y: this.world.centerY,
       asset: 'player_ship'
     })
-    
+
     this.input = new Keyboard(this.game)
 
     this.game.add.existing(this.mushroom)
+
+
+
+
   }
 
   render() {
@@ -39,7 +69,7 @@ export default class extends Phaser.State {
 
 
   // update function
-  update () {
+  update() {
 
     // keyboard action
     let keys = this.input.pressedKeys()
