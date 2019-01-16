@@ -9,6 +9,7 @@ export default class extends Phaser.State {
   preload() { }
 
   create() {
+    game.physics.startSystem(Phaser.Physics.ARCADE);
     const bannerText = lang.text('welcome')
     let banner = this.add.text(this.world.centerX, this.game.height - 80, bannerText, {
       font: '40px Arial',
@@ -31,7 +32,7 @@ export default class extends Phaser.State {
     emitter.minParticleScale = 0.1;
     emitter.maxParticleScale = 0.5;
 
-    emitter.setYSpeed(10, 10);
+    emitter.setYSpeed(200, 200);
     emitter.setXSpeed(-5, 5);
 
     emitter.minRotation = 0;
@@ -51,6 +52,12 @@ export default class extends Phaser.State {
       y: this.world.centerY,
       asset: 'player_ship'
     })
+
+    game.physics.arcade.enable(this.mushroom);
+
+    this.mushroom.body.bounce.y = 0
+    this.mushroom.body.bounce.x = 0
+    this.mushroom.body.collideWorldBounds = true;
 
     this.input = new Keyboard(this.game)
 
