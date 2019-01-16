@@ -1,6 +1,6 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
-import Mushroom from '../sprites/Mushroom'
+import Mushroom from '../entities/Mushroom'
 import lang from '../lang'
 
 export default class extends Phaser.State {
@@ -10,7 +10,7 @@ export default class extends Phaser.State {
   create() {
     const bannerText = lang.text('welcome')
     let banner = this.add.text(this.world.centerX, this.game.height - 80, bannerText, {
-      font: '40px Bangers',
+      font: '40px Arial',
       fill: '#77BFA3',
       smoothed: false
     })
